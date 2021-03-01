@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company_BLA", "Company_BLA\Company_BLA.csproj", "{546A8D7C-13E2-49A9-A4D2-EE4DFACA37E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company_BLA", "Company_BLA\Company_BLA.csproj", "{546A8D7C-13E2-49A9-A4D2-EE4DFACA37E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThunderBear.Utility", "Tunderbear.Utility\ThunderBear.Utility.csproj", "{4CA7D0DC-CC72-4306-AF5D-74B62FF9C13A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{546A8D7C-13E2-49A9-A4D2-EE4DFACA37E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{546A8D7C-13E2-49A9-A4D2-EE4DFACA37E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{546A8D7C-13E2-49A9-A4D2-EE4DFACA37E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CA7D0DC-CC72-4306-AF5D-74B62FF9C13A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CA7D0DC-CC72-4306-AF5D-74B62FF9C13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CA7D0DC-CC72-4306-AF5D-74B62FF9C13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CA7D0DC-CC72-4306-AF5D-74B62FF9C13A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
