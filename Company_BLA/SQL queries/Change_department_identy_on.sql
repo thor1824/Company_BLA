@@ -9,39 +9,43 @@ CREATE TABLE [dbo].[Tmp_Department](
 GO
 
 SET IDENTITY_INSERT dbo.Tmp_Department ON
-go
+GO
 
 IF EXISTS ( SELECT * FROM dbo.Department ) 
     INSERT  INTO dbo.Tmp_Department ( DNumber, DName, MgrSSN, MgrStartDate)
             SELECT  DNumber,DName, MgrSSN, MgrStartDate
             FROM    dbo.Department TABLOCKX
-go
+GO
 
 SET IDENTITY_INSERT dbo.Tmp_Department OFF
-go
+GO
 
 ALTER TABLE dbo.Department DROP CONSTRAINT FK_Department_Employee;
+GO
 ALTER TABLE dbo.Dept_Locations DROP CONSTRAINT FK_Dept_Locations_Department;
+GO
 ALTER TABLE dbo.Employee DROP CONSTRAINT FK_Employee_Department;
+GO
 ALTER TABLE dbo.Project DROP CONSTRAINT FK_Project_Department;
+GO
 
 DROP TABLE dbo.Department
-go
+GO
 
 Exec sp_rename 'Tmp_Department', 'Department'
 
 ALTER TABLE [dbo].[Department] ADD CONSTRAINT [FK_Department_Employee] FOREIGN KEY([MgrSSN])
-REFERENCES [dbo].[Employee] ([SSN])
+REFERENCES [dbo].[Employee] ([SSN]) 
 GO
 
 ALTER TABLE [dbo].[Dept_Locations] ADD CONSTRAINT [FK_Dept_Locations_Department] FOREIGN KEY([DNUmber])
-REFERENCES [dbo].[Department] ([DNumber])
+REFERENCES [dbo].[Department] ([DNumber]) ON DELETE CASCADE;
 GO
 
 ALTER TABLE [dbo].[Employee]  ADD CONSTRAINT [FK_Employee_Department] FOREIGN KEY([Dno])
-REFERENCES [dbo].[Department] ([DNumber])
+REFERENCES [dbo].[Department] ([DNumber]) ON DELETE SET NULL;
 GO
 
 ALTER TABLE [dbo].[Project]  ADD CONSTRAINT [FK_Project_Department] FOREIGN KEY([DNum])
-REFERENCES [dbo].[Department] ([DNumber])
+REFERENCES [dbo].[Department] ([DNumber]) ON DELETE CASCADE;
 GO
