@@ -20,7 +20,7 @@ namespace Company_BLA.ConsolePage
             SetMenu(new List<IAsyncMenuItem> {
                 new StandartMenuItem("Create Department", async () => {
                    DrawHeader();
-                   //con.Create();
+                   con.Create();
                    AwaitInput();
                 }),
                 new StandartMenuItem("Update Department name", async () => {
