@@ -1,6 +1,8 @@
 ﻿using Company_BLA.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Company_BLA.Repository
 {
@@ -8,15 +10,26 @@ namespace Company_BLA.Repository
     {
         public Department CreateDepartment(Department department)
         {
-            //using (var con = ConnectionFactory.GetUserConnection())
-            //{
-            //    con.Open();
+            Department returnDepartment;
+            using (var conn = ConnectionFactory.GetUserConnection())
+            {
+                conn.Open();
 
-            //    Console.WriteLine("Connection open");
+                SqlCommand cmd = new SqlCommand("usp_CreateDepartment", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-            //    con.Close();
-            //}
-            throw new NotImplementedException();
+                cmd.Parameters.AddWithValue("@DName", department.DName);
+                cmd.Parameters.AddWithValue("@MgrSSN", department.MgrSSN);
+
+                var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                cmd.ExecuteNonQuery();
+                var newId = (int) returnParameter.Value;
+                department.DNumber = newId;
+                department.MgrStartDate = DateTime.UtcNow;
+                returnDepartment = department;
+            }
+            return returnDepartment;
         }
 
         public void DeleteDepartment(int dNumb)
@@ -31,6 +44,14 @@ namespace Company_BLA.Repository
 
         public Department GetDepartment(int id)
         {
+            //using (SqlDataReader rdr = cmd.ExecuteReader())
+            //{
+            //    // iterate through results, printing each to console
+            //    while (rdr.Read())
+            //    {
+            //        Console.WriteLine("Product: {0,-35} Total: {1,2}", rdr["ProductName"], rdr["Total"]);
+            //    }
+            //}
             throw new NotImplementedException();
         }
 
