@@ -40,8 +40,9 @@ namespace ThunderBear.Utility.EasyConsole.Abstract
         public void SetMenu(IList<IAsyncMenuItem> menuItems)
         {
             _maxPage = menuItems.Count / _itemsPrPage;
-            
-            if (menuItems.Count == _maxPage * _itemsPrPage) {
+
+            if (menuItems.Count == _maxPage * _itemsPrPage)
+            {
                 _maxPage = _maxPage - 1;
             }
             _menuItems = menuItems;

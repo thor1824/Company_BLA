@@ -1,8 +1,6 @@
 ﻿using Company_BLA.Service;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
-using System.Threading;
 using ThunderBear.Utility.EasyConsole.Abstract;
 using ThunderBear.Utility.EasyConsole.Components;
 using ThunderBear.Utility.EasyConsole.Facade;

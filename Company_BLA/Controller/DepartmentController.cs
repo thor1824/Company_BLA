@@ -1,10 +1,16 @@
-﻿using Company_BLA.Model;
+﻿using Company_BLA.Repository;
 using System;
 
 namespace Company_BLA.Service
 {
     public class DepartmentController : IDepartmentController
     {
+        private readonly IDepartmentRepository _repo;
+
+        public DepartmentController(IDepartmentRepository repo)
+        {
+            _repo = repo;
+        }
 
         /**
          *Each metod sould go somthing like:
