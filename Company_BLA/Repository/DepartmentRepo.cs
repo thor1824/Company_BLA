@@ -25,7 +25,7 @@ namespace Company_BLA.Repository
                 var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
                 returnParameter.Direction = ParameterDirection.ReturnValue;
                 cmd.ExecuteNonQuery();
-                var newId = (int) returnParameter.Value;
+                var newId = (int)returnParameter.Value;
                 department.DNumber = newId;
                 department.MgrStartDate = DateTime.UtcNow;
                 returnDepartment = department;
@@ -42,7 +42,32 @@ namespace Company_BLA.Repository
         // Thorbjørn
         public IEnumerable<Department> GetAllDepartment()
         {
-            throw new NotImplementedException();
+            var departments = new List<Department>();
+            using (var conn = ConnectionFactory.GetUserConnection())
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("usp_GetAllDepartments", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+
+                    while (rdr.Read())
+                    {
+                        var dep = new Department
+                        {
+                            DName = (string)rdr["DName"],
+                            DNumber = (int)rdr["DNumber"],
+                            MgrSSN = (int)rdr["MgrSSN"],
+                            MgrStartDate = (DateTime)rdr["MgrStartDate"],
+                            numberOfEmployee = (int)rdr["NoEmployee"]
+                        };
+                        departments.Add(dep);
+                    }
+                }
+            }
+            return departments;
         }
 
         // Christian
@@ -68,6 +93,7 @@ namespace Company_BLA.Repository
         // Thorbjørn
         public void UpdateDepartmentName(int dNumb, string dName)
         {
+
             throw new NotImplementedException();
         }
     }

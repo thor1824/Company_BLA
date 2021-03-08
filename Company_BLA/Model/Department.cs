@@ -7,6 +7,7 @@ namespace Company_BLA.Model
         public int? DNumber { get; set; }
         public string DName { get; set; }
         public int MgrSSN { get; set; }
+        public int? numberOfEmployee { get; set; }
         public DateTime? MgrStartDate { get; set; }
     }
 }
