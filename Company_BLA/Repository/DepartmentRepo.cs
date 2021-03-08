@@ -8,6 +8,7 @@ namespace Company_BLA.Repository
 {
     public class DepartmentRepo : IDepartmentRepository
     {
+        // Thorbjørn
         public Department CreateDepartment(Department department)
         {
             Department returnDepartment;
@@ -32,16 +33,19 @@ namespace Company_BLA.Repository
             return returnDepartment;
         }
 
+        // Christian
         public void DeleteDepartment(int dNumb)
         {
             throw new NotImplementedException();
         }
 
+        // Thorbjørn
         public IEnumerable<Department> GetAllDepartment()
         {
             throw new NotImplementedException();
         }
 
+        // Christian
         public Department GetDepartment(int id)
         {
             //using (SqlDataReader rdr = cmd.ExecuteReader())
@@ -55,11 +59,13 @@ namespace Company_BLA.Repository
             throw new NotImplementedException();
         }
 
+        // Christian
         public void UpdateDepartmentManager(int dNumb, string mgrSSN)
         {
             throw new NotImplementedException();
         }
 
+        // Thorbjørn
         public void UpdateDepartmentName(int dNumb, string dName)
         {
             throw new NotImplementedException();
