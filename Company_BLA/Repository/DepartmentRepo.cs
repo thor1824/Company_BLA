@@ -8,6 +8,7 @@ namespace Company_BLA.Repository
 {
     public class DepartmentRepo : IDepartmentRepository
     {
+        // Thorbjørn
         public Department CreateDepartment(Department department)
         {
             Department returnDepartment;
@@ -32,16 +33,44 @@ namespace Company_BLA.Repository
             return returnDepartment;
         }
 
+        // Christian
         public void DeleteDepartment(int dNumb)
         {
             throw new NotImplementedException();
         }
 
+        // Thorbjørn
         public IEnumerable<Department> GetAllDepartment()
         {
-            throw new NotImplementedException();
+            var departments = new List<Department>();
+            using (var conn = ConnectionFactory.GetUserConnection())
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("usp_GetAllDepartments", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+
+                    while (rdr.Read())
+                    {
+                        var dep = new Department
+                        {
+                            DName = (string)rdr["DName"],
+                            DNumber = (int)rdr["DNumber"],
+                            MgrSSN = (int)rdr["MgrSSN"],
+                            MgrStartDate = (DateTime)rdr["MgrStartDate"],
+                            numberOfEmployee = (int)rdr["NoEmployee"]
+                        };
+                        departments.Add(dep);
+                    }
+                }
+            }
+            return departments;
         }
 
+        // Christian
         public Department GetDepartment(int id)
         {
             //using (SqlDataReader rdr = cmd.ExecuteReader())
@@ -55,11 +84,13 @@ namespace Company_BLA.Repository
             throw new NotImplementedException();
         }
 
+        // Christian
         public void UpdateDepartmentManager(int dNumb, string mgrSSN)
         {
             throw new NotImplementedException();
         }
 
+        // Thorbjørn
         public void UpdateDepartmentName(int dNumb, string dName)
         {
       
@@ -76,6 +107,8 @@ namespace Company_BLA.Repository
                 cmd.ExecuteNonQuery();
 
             }
+
+            throw new NotImplementedException();
         }
     }
 }
