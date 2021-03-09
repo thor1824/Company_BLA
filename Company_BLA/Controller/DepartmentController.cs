@@ -32,7 +32,7 @@ namespace Company_BLA.Service
             try
             {
                 var newDep = _repo.CreateDepartment(new Department { DName = dname, MgrSSN = mgrSSN });
-                
+
 
                 if (newDep != null)
                 {
@@ -65,7 +65,25 @@ namespace Company_BLA.Service
         }
         public void UpdateName()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n Enter department Number");
+            var dNumber = Int32.Parse(Console.ReadLine());
+
+            Console.WriteLine("\n Enter New Department Name");
+            var dName = Console.ReadLine();
+
+            Console.Write("\nUpdating Department...");
+
+            try
+            {
+                //maybe add a old name vs new name in before done need read for that. 
+                _repo.UpdateDepartmentName(dNumber, dName);
+                Console.WriteLine("Done!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed!");
+                Console.WriteLine("Error: " + e.Message);
+            }
 
         }
         public void UpdateMgr()
@@ -79,7 +97,8 @@ namespace Company_BLA.Service
 
         }
 
-        private void PrintDepartment(Department department) {
+        private void PrintDepartment(Department department)
+        {
             Console.WriteLine($"ID:\t{department.DNumber}\nName:\t{department.DName}\nMgrSSN:\t{department.MgrSSN}\nManager Starting Date:\t{department.MgrStartDate}");
         }
     }

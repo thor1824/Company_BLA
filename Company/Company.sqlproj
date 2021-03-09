@@ -172,5 +172,6 @@
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Security\Permissions.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UpdateDepartmentName.sql" />
   </ItemGroup>
 </Project>
