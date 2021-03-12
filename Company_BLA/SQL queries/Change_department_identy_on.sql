@@ -33,6 +33,10 @@ DROP TABLE dbo.Department
 GO
 
 Exec sp_rename 'Tmp_Department', 'Department'
+GO
+
+Exec sp_rename @objname = N'[dbo].[Department].[PK_Departments]', @newname = N'PK_Department'
+GO
 
 ALTER TABLE [dbo].[Department] ADD CONSTRAINT [FK_Department_Employee] FOREIGN KEY([MgrSSN])
 REFERENCES [dbo].[Employee] ([SSN]) 
