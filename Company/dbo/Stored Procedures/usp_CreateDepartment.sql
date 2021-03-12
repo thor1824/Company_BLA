@@ -15,7 +15,7 @@ BEGIN TRY
 
 		EXEC [dbo].[usp_ThrowIfIsManager] @MgrSSN = @MgrSSN;
 
-		DECLARE @Today DATE = GETDATE();
+		DECLARE @Today DATE = CURRENT_TIMESTAMP;
 		INSERT INTO Department(DName, MgrSSN, MgrStartDate)
 		VALUES (@DName, @MgrSSN, @Today);
 

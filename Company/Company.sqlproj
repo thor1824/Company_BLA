@@ -174,5 +174,13 @@
     <Build Include="Security\Permissions.sql" />
     <Build Include="dbo\Stored Procedures\usp_UpdateDepartmentName.sql" />
     <Build Include="dbo\Stored Procedures\usp_UpdateDepartmentManager.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetDepartment2.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\usp_GetAllDepartments2.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
   </ItemGroup>
 </Project>

@@ -147,7 +147,7 @@ namespace Company_BLA.Service
 
         private void PrintDepartment(Department department)
         {
-            Console.WriteLine($"ID:\t{department.DNumber}\nName:\t{department.DName}\nMgrSSN:\t{department.MgrSSN}\nManager Starting Date:\t{department.MgrStartDate}");
+            Console.WriteLine($"ID:\t{department.DNumber}\nName:\t{department.DName}\nMgrSSN:\t{department.MgrSSN}\nManager Starting Date:\t{department.MgrStartDate}\nNumber of Employees:\t{department.NumberOfEmployee}");
         }
     }
 }

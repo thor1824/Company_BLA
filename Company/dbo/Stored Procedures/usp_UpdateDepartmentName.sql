@@ -7,13 +7,19 @@ CREATE PROCEDURE [dbo].[usp_UpdateDepartmentName]
 	@DNumber int,
 	@DName varchar(50)
 AS
-BEGIN
-SET NOCOUNT ON;
+BEGIN TRY 
+	BEGIN TRANSACTION;
+		SET NOCOUNT ON;
 
-	Exec dbo.usp_ThrowIfNotUniqeName @DName = @DName
+		Exec dbo.usp_ThrowIfNotUniqeName @DName = @DName
 
-	UPDATE Department 
-	SET  DName = @DName
-	WHERE DNumber = @DNumber
+		UPDATE Department 
+		SET  DName = @DName
+		WHERE DNumber = @DNumber
 
-END
+	COMMIT TRANSACTION;
+END TRY  
+BEGIN CATCH 
+	if @@trancount > 0 ROLLBACK TRANSACTION;
+    throw;
+END CATCH

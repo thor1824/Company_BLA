@@ -72,7 +72,7 @@ namespace Company_BLA.Repository
                             DNumber = (int)rdr["DNumber"],
                             MgrSSN = (decimal)rdr["MgrSSN"],
                             MgrStartDate = (DateTime)rdr["MgrStartDate"],
-                            numberOfEmployee = (int)rdr["NoEmployee"]
+                            NumberOfEmployee = (int)rdr["EmpCount"]
                         };
                         departments.Add(dep);
                     }
@@ -102,7 +102,7 @@ namespace Company_BLA.Repository
                         DNumber = (int)rdr["DNumber"],
                         MgrSSN = (decimal)rdr["MgrSSN"],
                         MgrStartDate = (DateTime)rdr["MgrStartDate"],
-                        numberOfEmployee = (int)rdr["NoEmployee"]
+                        NumberOfEmployee = (int)rdr["EmpCount"]
                     };
                     return dep;
                 }
