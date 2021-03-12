@@ -36,7 +36,18 @@ namespace Company_BLA.Repository
         // Christian
         public void DeleteDepartment(int dNumb)
         {
-            throw new NotImplementedException();
+            using (var conn = ConnectionFactory.GetUserConnection())
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("usp_DeleteDepartment", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@DNumber", dNumb);
+
+                cmd.ExecuteNonQuery();
+
+            }
         }
 
         // Thorbjørn
@@ -59,7 +70,7 @@ namespace Company_BLA.Repository
                         {
                             DName = (string)rdr["DName"],
                             DNumber = (int)rdr["DNumber"],
-                            MgrSSN = (int)rdr["MgrSSN"],
+                            MgrSSN = (decimal)rdr["MgrSSN"],
                             MgrStartDate = (DateTime)rdr["MgrStartDate"],
                             numberOfEmployee = (int)rdr["NoEmployee"]
                         };
@@ -73,27 +84,52 @@ namespace Company_BLA.Repository
         // Christian
         public Department GetDepartment(int id)
         {
-            //using (SqlDataReader rdr = cmd.ExecuteReader())
-            //{
-            //    // iterate through results, printing each to console
-            //    while (rdr.Read())
-            //    {
-            //        Console.WriteLine("Product: {0,-35} Total: {1,2}", rdr["ProductName"], rdr["Total"]);
-            //    }
-            //}
-            throw new NotImplementedException();
+            using (var conn = ConnectionFactory.GetUserConnection())
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("usp_GetDepartment", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@DNumber", id);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    rdr.Read();
+                    var dep = new Department
+                    {
+                        DName = (string)rdr["DName"],
+                        DNumber = (int)rdr["DNumber"],
+                        MgrSSN = (decimal)rdr["MgrSSN"],
+                        MgrStartDate = (DateTime)rdr["MgrStartDate"],
+                        numberOfEmployee = (int)rdr["NoEmployee"]
+                    };
+                    return dep;
+                }
+            }
         }
 
         // Christian
-        public void UpdateDepartmentManager(int dNumb, string mgrSSN)
+        public void UpdateDepartmentManager(int dNumb, int mgrSSN)
         {
-            throw new NotImplementedException();
+            using (var conn = ConnectionFactory.GetUserConnection())
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("usp_UpdateDepartmentManager", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@DNumber", dNumb);
+                cmd.Parameters.AddWithValue("@MgrSSN", mgrSSN);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         // Thorbjørn
         public void UpdateDepartmentName(int dNumb, string dName)
         {
-      
+
             using (var conn = ConnectionFactory.GetUserConnection())
             {
                 conn.Open();
@@ -107,8 +143,6 @@ namespace Company_BLA.Repository
                 cmd.ExecuteNonQuery();
 
             }
-
-            throw new NotImplementedException();
         }
     }
 }

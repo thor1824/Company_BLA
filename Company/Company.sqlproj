@@ -173,5 +173,6 @@
     </Build>
     <Build Include="Security\Permissions.sql" />
     <Build Include="dbo\Stored Procedures\usp_UpdateDepartmentName.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UpdateDepartmentManager.sql" />
   </ItemGroup>
 </Project>

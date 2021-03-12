@@ -10,6 +10,6 @@ namespace Company_BLA.Repository
         Department GetDepartment(int id);
         void DeleteDepartment(int dNumb);
         void UpdateDepartmentName(int dNumb, string dName);
-        void UpdateDepartmentManager(int dNumb, string mgrSSN);
+        void UpdateDepartmentManager(int dNumb, int mgrSSN);
     }
 }
